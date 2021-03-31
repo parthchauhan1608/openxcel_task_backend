@@ -1,6 +1,8 @@
 
-function findOne(model, query, projection = {}, options = {}) {
-    return model.findOne(query, projection, options).lean()
+function findOne(model, query, projection = {}, options = {}, populate = []) {
+    return model.findOne(query, projection, options)
+        .populate(populate)
+        .lean()
         .then((result) => {
             return result;
         })

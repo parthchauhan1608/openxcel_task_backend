@@ -35,7 +35,7 @@ async function getTopic(req) {
         ]
         let topics = await dao.findWithPopulate(Topics, {}, {}, {}, populate);
 
-        return responseHandler.success(http_codes.OK, message.SUCCESS.TOPIC_CREATED, topics);
+        return responseHandler.success(http_codes.OK, message.SUCCESS.SUCCESS, topics);
     }
     catch (err) {
         console.log({ err })

@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
  * @param {object} user Contain perticular user details.
  */
 async function generateAuthToken(user) {
-    return jwt.sign({user}, process.env.jwtPrivateKey, { expiresIn: '24h' });
+    return jwt.sign({ user }, process.env.jwtPrivateKey, { expiresIn: '24h' });
 }
 
 /**
@@ -15,7 +15,16 @@ async function generateAuthToken(user) {
  */
 async function validateToken(token) {
     try {
-        let decoded = jwt.verify(token, process.env.jwtPrivateKey);
+        let decoded = await new Promise((resolve, reject) => {
+            jwt.verify(token, process.env.jwtPrivateKey, (err, decoded) => {
+                if (err) {
+                    reject(err)
+                }
+                else {
+                    resolve(decoded)
+                }
+            })
+        })
         return decoded;
     }
     catch (err) {

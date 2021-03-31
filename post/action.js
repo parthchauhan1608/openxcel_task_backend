@@ -12,9 +12,13 @@ function commentOnPost(req) {
     return service.commentOnPost(req);
 }
 
+function getPostById(req){
+    return service.getPostById(req);
+}
 
 module.exports = {
     createPost,
     getPost,
-    commentOnPost
+    commentOnPost,
+    getPostById
 };

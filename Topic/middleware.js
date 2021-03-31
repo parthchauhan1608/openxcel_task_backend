@@ -2,14 +2,14 @@ const { http_codes, message } = require("../Util/constant");
 const response = require("../Util/responseHandler");
 const { generateAuthToken, validateToken } = require("../Util/jwtService");
 
-function validateJWT(req, res, next) {
+async function validateJWT(req, res, next) {
     if (!req.headers.authorization) {
         let error = response.error(http_codes.UNAUTHORIZED, message.ERROR.UNAUTHORIZED);
         res.status(error.code).send(error);
         return;
     }
 
-    let checkToket = validateToken(req.headers.authorization);
+    let checkToket = await validateToken(req.headers.authorization);
     if (!checkToket) {
         let error = response.error(http_codes.UNAUTHORIZED, message.ERROR.UNAUTHORIZED);
         res.status(error.code).send(error);

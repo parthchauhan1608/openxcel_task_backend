@@ -35,7 +35,7 @@ async function registerUser(req) {
         }
 
         // send welcome mail
-        mailService.sendMail(userDetail.email, mail.SUBJECT.WELCOME, mail.BODY.WELCOME );
+        mailService.sendMail(userDetail.email, mail.SUBJECT.WELCOME, mail.BODY.WELCOME);
 
         return responseHandler.success(http_codes.OK, message.SUCCESS.REGISTERED_USER, responseData);
 
@@ -71,7 +71,7 @@ async function login(req) {
             userDetail: userDetail
         }
 
-        return responseHandler.success(http_codes.OK, message.SUCCESS.REGISTERED_USER, responseData);
+        return responseHandler.success(http_codes.OK, message.SUCCESS.LOGIN_SUCCESS, responseData);
     }
     catch (err) {
         console.log({ err })

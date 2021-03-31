@@ -20,4 +20,9 @@ router.post('/comment/:post_id', [middleware.validateJWT, middleware.commentOnPo
     res.status(result.code).send(result);
 })
 
+router.get('/postId/:post_id', [middleware.validateJWT], async (req, res) => {
+    let result = await action.getPostById(req);
+    res.status(result.code).send(result);
+})
+
 module.exports = router;

@@ -46,7 +46,7 @@ async function getPost(req) {
         }
         let topics = await dao.findWithPopulate(Posts, query, {}, {}, populate);
 
-        return responseHandler.success(http_codes.OK, message.SUCCESS.TOPIC_CREATED, topics);
+        return responseHandler.success(http_codes.OK, message.SUCCESS.SUCCESS, topics);
     }
     catch (err) {
         console.log({ err })
@@ -93,8 +93,29 @@ async function commentOnPost(req) {
     }
 }
 
+async function getPostById(req) {
+    try {
+        let populate = [
+            'user_id',
+            'topic_id',
+            'comment.user_id'
+        ]
+        let query = {
+            _id: req.params.post_id
+        }
+        let topics = await dao.findOne(Posts, query, {}, {}, populate);
+
+        return responseHandler.success(http_codes.OK, message.SUCCESS.SUCCESS, topics);
+    }
+    catch (err) {
+        console.log({ err })
+        return responseHandler.error(http_codes.INTERNAL_SERVER_ERROR, message.ERROR.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createPost,
     getPost,
-    commentOnPost
+    commentOnPost,
+    getPostById
 }

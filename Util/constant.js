@@ -23,9 +23,11 @@ exports.message = {
     },
     SUCCESS: {
         REGISTERED_USER: "User registration success.",
+        LOGIN_SUCCESS: "Logged in success.",
         TOPIC_CREATED: "Topic created.",
         POST_CREATED: "Post created.",
-        COMMENT_CREATED_ON_POST: "Comment make success."
+        COMMENT_CREATED_ON_POST: "Comment make success.",
+        SUCCESS: "Success."
     }
 };
 
