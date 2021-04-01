@@ -3,13 +3,13 @@ const response = require("../Util/responseHandler");
 const { generateAuthToken, validateToken } = require("../Util/jwtService");
 
 async function validateJWT(req, res, next) {
-    if (!req.headers.authorization) {
+    if (!req.headers.auth_token) {
         let error = response.error(http_codes.UNAUTHORIZED, message.ERROR.UNAUTHORIZED);
         res.status(error.code).send(error);
         return;
     }
 
-    let checkToket = await validateToken(req.headers.authorization);
+    let checkToket = await validateToken(req.headers.auth_token);
     if (!checkToket) {
         let error = response.error(http_codes.UNAUTHORIZED, message.ERROR.UNAUTHORIZED);
         res.status(error.code).send(error);
