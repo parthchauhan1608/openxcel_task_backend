@@ -6,7 +6,7 @@ Getting up and running is as easy as 1, 2, 3.
 2. Install your dependencies
 
     ```
-    cd path/to/openxcel_task_backend
+    cd path/to/task_backend_interview
     npm install
     ```
 
